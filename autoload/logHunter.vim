@@ -28,10 +28,10 @@ function! logHunter#AddEntry(...)
     endif
     let l:qflist = logHunter#GetQflist()
     let l:match_reg = matchstr(l:text, g:log_hunter_sort_regex)
-    let l:new_item = [{'bufnr': l:bufnr, 'lnum': l:lnum, 'text': l:text, 'match_reg':match_reg}]
+    let l:new_item = [{'bufnr': l:bufnr, 'lnum': l:lnum, 'text': l:text, 'match_reg':l:match_reg}]
     " check duplicated item
-    if !empty(l:qflist)
-	let l:item_index = index(l:qflist, l:new_item)
+    if 0 == empty(l:qflist.items)
+	let l:item_index = index(l:qflist.items, l:new_item)
 	if l:item_index >= 0
 	    echom "entry already exist!"
 	    return
